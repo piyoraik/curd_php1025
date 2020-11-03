@@ -18,9 +18,13 @@ if (!empty($_GET['id'])) {
 if (!empty($_POST && !$_POST['id'] == '')) {
   // update処理
   $_POST['purchase_date'] = null_convert($_POST['purchase_date']);
-  $_SESSION['msg'] = update_sql();
-  $_SESSION['info'] = 'book_update';
-  header('Location: ./list.php');
+  if ($_SESSION['msg'] = update_sql()) {
+    $_SESSION['info'] = '更新しました';
+    header('Location: ./list.php');
+  } else {
+    $_SESSION['msg'] = '更新に失敗しました';
+    error_message();
+  }
 }
 
 // UPDATE処理

@@ -14,9 +14,13 @@ if (!empty($_GET['id'])) {
 // POSTチェック
 if (!empty($_POST)) {
   // delete処理
-  $_SESSION['msg'] = delete_sql();
-  $_SESSION['info'] = 'book_delete';
-  header('Location: ./list.php');
+  if ($_SESSION['msg'] = delete_sql()) {
+    $_SESSION['info'] = '削除しました';
+    header('Location: ./list.php');
+  } else {
+    $_SESSION['msg'] = "データの削除に失敗しました";
+    error_message();
+  }
 }
 
 // DELETE処理

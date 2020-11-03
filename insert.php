@@ -5,13 +5,16 @@ require_once('./function.php');
 if (!isset($_SESSION['id'])) {
   header('Location: ./login.php');
 }
-
 //
 if (post_check() == 1) {
   $_POST['purchase_date'] = null_convert($_POST['purchase_date']);
-  $_SESSION['msg'] = inesrt_sql($_POST);
-  $_SESSION['info'] = "book_insert";
-  header('Location: ./list.php');
+  if ($_SESSION['msg'] = inesrt_sql($_POST)) {
+    $_SESSION['info'] = "投稿しました";
+    header('Location: ./list.php');
+  } else {
+    $_SESSION['msg'] = "データの登録に失敗しました";
+    error_message();
+  }
 }
 
 // 値チェック

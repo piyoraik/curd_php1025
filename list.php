@@ -13,7 +13,7 @@ if (!empty($_POST['logout'])) {
 }
 
 // ページャ機能
-$number_of_display = 50;
+$number_of_display = 5;
 if (isset($_GET['page'])) {
   $current_page = $_GET['page'];
 } else {

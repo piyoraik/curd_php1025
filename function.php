@@ -47,13 +47,19 @@ function solt($password, $password_str, $password_cnt)
 function message()
 {
   if (!isset($_SESSION['msg'])) return false;
-  if ($_SESSION['info'] == 'book_insert') $info = "投稿しました";
-  if ($_SESSION['info'] == 'book_update') $info = "更新しました";
-  if ($_SESSION['info'] == 'book_delete') $info = "削除しました";
-
   echo "<div class='alert alert-success' role='alert'>";
-  echo "ID:{$_SESSION['msg']}のデータを{$info}";
+  echo "ID:{$_SESSION['msg']}のデータを{$_SESSION['info']}";
   echo "</div>";
   unset($_SESSION['msg']);
   unset($_SESSION['info']);
+}
+
+// エラーメッセージ
+function error_message()
+{
+  if (!isset($_SESSION['msg'])) return false;
+  echo "<div class='alert alert-danger' role='alert'>";
+  echo "{$_SESSION['msg']}";
+  echo "</div>";
+  unset($_SESSION['msg']);
 }
