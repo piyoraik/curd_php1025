@@ -12,9 +12,8 @@ if (!empty($_POST['logout'])) {
   header('Location: ./login.php');
 }
 
-
 // ページャ機能
-$number_of_display = 2;
+$number_of_display = 50;
 if (isset($_GET['page'])) {
   $current_page = $_GET['page'];
 } else {

@@ -14,7 +14,8 @@ if (!empty($_GET['id'])) {
 // POSTチェック
 if (!empty($_POST)) {
   // delete処理
-  delete_sql();
+  $_SESSION['msg'] = delete_sql();
+  $_SESSION['info'] = 'book_delete';
   header('Location: ./list.php');
 }
 
@@ -28,7 +29,7 @@ function delete_sql()
           WHERE id = '{$_POST['id']}'
           ";
   if ($link->query($sql)) {
-    $id = $link->insert_id;
+    $id = $_POST['id'];
     $link->close();
     return $id;
   } else {

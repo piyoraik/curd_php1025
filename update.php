@@ -15,10 +15,11 @@ if (!empty($_GET['id'])) {
   }
 }
 
-// POSTチェック
-if (!empty($_POST)) {
+if (!empty($_POST && !$_POST['id'] == '')) {
   // update処理
-  update_sql();
+  $_POST['purchase_date'] = null_convert($_POST['purchase_date']);
+  $_SESSION['msg'] = update_sql();
+  $_SESSION['info'] = 'book_update';
   header('Location: ./list.php');
 }
 
@@ -30,12 +31,12 @@ function update_sql()
           title = '{$_POST['title']}',
           volume = '{$_POST['volume']}',
           price = '{$_POST['price']}',
-          release_date = '{$_POST['release_date']}',
-          purchase_date = '{$_POST['purchase_date']}'
+          release_date = {$_POST['release_date']},
+          purchase_date = {$_POST['purchase_date']}
           WHERE id = '{$_POST['id']}'
           ";
   if ($link->query($sql)) {
-    $id = $link->insert_id;
+    $id = $_POST['id'];
     $link->close();
     return $id;
   } else {
