@@ -8,7 +8,8 @@ if (!isset($_SESSION['id'])) {
 
 // GETチェック
 if (!empty($_GET['id'])) {
-  $book = fetch_book($_GET['id']);
+  $book_fetch = fetch_book($_GET['id']);
+  $book = convert_books($book_fetch);
 }
 
 // POSTチェック

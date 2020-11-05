@@ -10,7 +10,7 @@ if (!empty($_GET['id'])) {
   $book = fetch_book($_GET['id']);
   // 本の販売日・購入日情報変換
   $book['release_date'] = str_replace('-', '', $book['release_date']);
-  if (empty($book['purchase_date'])) {
+  if (!empty($book['purchase_date'])) {
     $book['purchase_date'] = str_replace('-', '', $book['purchase_date']);
   }
 }

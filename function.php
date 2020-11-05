@@ -23,6 +23,20 @@ function fetch_book($id)
   return $book;
 }
 
+// 本の表示形式変更
+function convert_books($book)
+{
+  $book['volume'] = $book['volume'] . '巻';
+
+  $book['price'] = $book['price'] . '円';
+
+  $book['release_date'] = str_replace(array('-', 'ー'), array('年', '月', '日'), $book['release_date'] . '日');
+  if (!$book['purchase_date'] == NULL) {
+    $book['purchase_date'] = str_replace(array('-', 'ー'), array('年', '月', '日'), $book['purchase_date'] . '日');
+  }
+  return $book;
+}
+
 // NULLの場合変換
 function null_convert($purchase_date)
 {
